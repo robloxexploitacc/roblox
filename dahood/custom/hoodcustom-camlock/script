@@ -3,6 +3,8 @@ game.StarterGui:SetCore("SendNotification", {
     Text = "started"
 })
 
+print("CAMLOCK STARTED")
+
 getgenv().Prediction = 0.15038
 getgenv().AimPart = "HumanoidRootPart"
 getgenv().Key = "E"
@@ -115,12 +117,15 @@ end
 --// Checks if key is down
  
 Mouse.KeyDown:Connect(function(k)
+    print("key down detected")
     SelectedKey = SelectedKey:lower()
     SelectedDisableKey = SelectedDisableKey:lower()
     if k == SelectedKey then
+        print("K key selected, enabled lock")
         if AimlockState == true then
             Locked = not Locked
             if Locked then
+	        print("locking onto victim")
                 Victim = getClosest()
  
                 Notify("Locked onto: "..tostring(Victim.Character.Humanoid.DisplayName))
@@ -136,6 +141,7 @@ Mouse.KeyDown:Connect(function(k)
         end
     end
     if k == SelectedDisableKey then
+        print("k key selected, disabled lock")
         AimlockState = not AimlockState
     end
 end)
